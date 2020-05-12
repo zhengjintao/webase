@@ -52,9 +52,29 @@
             <MaxHistory>90</MaxHistory>
         </rollingPolicy>
     </appender>
+    <appender name="requestLog" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+        <encoder>
+            <pattern>%d{yyyy/MM/dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--路径-->
+            <fileNamePattern>${logging.path}/${logFileName}.request.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <MaxHistory>90</MaxHistory>
+        </rollingPolicy>
+    </appender>
+    
     <root level="info">
         <appender-ref ref="consoleLog"/>
         <appender-ref ref="fileInfoLog"/>
         <appender-ref ref="fileErrorLog"/>
     </root>
+    
+    <logger name="com.gmtech.webase.interceptor.RequestLoggerInterceptor" level="info" additivity="false" >
+        <appender-ref ref="consoleLog"/>
+        <appender-ref ref="requestLog" />
+    </logger>
 </configuration>

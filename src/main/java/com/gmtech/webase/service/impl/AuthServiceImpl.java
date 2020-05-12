@@ -11,8 +11,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.gmtech.webase.service.AuthService;
-import com.gmtech.webase.service.UserService;
-import com.gmtech.webase.service.bean.User;
+import com.gmtech.webase.service.UserAccountService;
+import com.gmtech.webase.service.bean.UserAccount;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -22,10 +22,10 @@ public class AuthServiceImpl implements AuthService {
 	@Autowired
     private UserDetailsService userDetailsService;
 	@Autowired
-	private UserService userService;
+	private UserAccountService userService;
 
     @Override
-    public int register(User user) {
+    public int register(UserAccount user) {
         final String username = user.getUsername();
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();

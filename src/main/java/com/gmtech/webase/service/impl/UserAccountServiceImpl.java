@@ -8,26 +8,26 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.gmtech.webase.service.UserService;
-import com.gmtech.webase.service.bean.User;
-import com.gmtech.webase.service.mapper.UserMapper;
+import com.gmtech.webase.service.UserAccountService;
+import com.gmtech.webase.service.bean.UserAccount;
+import com.gmtech.webase.service.mapper.UserAccountMapper;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserAccountServiceImpl implements UserAccountService {
 
     @Resource
-    private UserMapper userMapper;
+    private UserAccountMapper userMapper;
 
     @Override
     public Object listAll(int page, int size) {
         PageHelper.startPage(page, size);
-        List<User> userList = userMapper.listAll();
-        PageInfo<User> pageInfo = new PageInfo<>(userList);
+        List<UserAccount> userList = userMapper.listAll();
+        PageInfo<UserAccount> pageInfo = new PageInfo<>(userList);
         return pageInfo;
     }
 
     @Override
-    public int insert(User user) {
+    public int insert(UserAccount user) {
         return userMapper.insert(user);
     }
 
@@ -37,12 +37,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int update(User user) {
+    public int update(UserAccount user) {
         return userMapper.update(user);
     }
 
 	@Override
-	public User getUserByUserName(String userName) {
+	public UserAccount getUserByUserName(String userName) {
 		return userMapper.getUserByUserName(userName);
+	}
+
+	@Override
+	public UserAccount getUserByMailAddress(String mailAddress) {
+		return userMapper.getUserByUserName(mailAddress);
 	}
 }

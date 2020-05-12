@@ -9,8 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import org.springframework.stereotype.Component;
 
-import com.gmtech.webase.service.UserService;
-import com.gmtech.webase.service.bean.User;
+import com.gmtech.webase.service.UserAccountService;
+import com.gmtech.webase.service.bean.UserAccount;
 import com.gmtech.webase.util.JwtsUtil;
 
 import javax.servlet.FilterChain;
@@ -21,7 +21,7 @@ import java.io.IOException;
 
 public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 	@Autowired
-	private UserService userService;
+	private UserAccountService userService;
 
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager) {
 		super(authenticationManager);
@@ -50,7 +50,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 			String username = JwtsUtil.decode(token.replace("Bearer ", ""));
 
 			if (username != null) {
-				User user = userService.getUserByUserName(username);
+				UserAccount user = userService.getUserByUserName(username);
 				return new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(),
 						AuthorityUtils.commaSeparatedStringToAuthorityList("ROLE_admin"));
 			}

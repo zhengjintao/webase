@@ -19,7 +19,8 @@ public class Message {
 		return new Message();
 	}
 	
-	public void setMsg(String msg) {
+	public Message setMsg(String msg) {
 		this.content = msg;
+		return this;
 	}
 }

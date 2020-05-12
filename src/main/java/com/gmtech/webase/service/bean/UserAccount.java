@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class User {
+public class UserAccount {
 	/**
      * 主键ID
      */
@@ -15,6 +15,11 @@ public class User {
      * 用户名
      */
     private String username;
+    
+    /**
+     * 邮箱地址
+     */
+    private String mailAddress;
 
     /**
      * 密码
@@ -23,10 +28,10 @@ public class User {
     /**
      * 创建时间
      */
-    private Date gmtCreate;
+    private Date createTime;
 
     /**
      * 修改时间
      */
-    private Date gmtModified;
+    private Date updateTime;
 }

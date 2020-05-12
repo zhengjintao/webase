@@ -6,14 +6,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gmtech.webase.service.UserService;
-import com.gmtech.webase.service.bean.User;
+import com.gmtech.webase.service.UserAccountService;
+import com.gmtech.webase.service.bean.UserAccount;
 
 @RestController
 public class UserController {
 
     @Resource
-    private UserService userService;
+    private UserAccountService userService;
 
     /**
      * 查询全部
@@ -33,7 +33,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/insert")
-    public int insert (User user){
+    public int insert (UserAccount user){
         return userService.insert(user);
     }
 
@@ -53,7 +53,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/update")
-    public int update(User user){
+    public int update(UserAccount user){
         return userService.update(user);
     }
 }
